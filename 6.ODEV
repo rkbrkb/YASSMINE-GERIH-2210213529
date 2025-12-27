@@ -1,0 +1,59 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct Node {
+    int value;
+    struct Node* link;
+} Node;
+
+Node* newNode(int v) {
+    Node* n = (Node*)malloc(sizeof(Node));
+    n->value = v;
+    n->link = n;
+    return n;
+}
+
+void insertAt(Node* head, int index, int v) {
+    Node* temp = head;
+    while (index--) temp = temp->link;
+
+    Node* n = newNode(v);
+    n->link = temp->link;
+    temp->link = n;
+}
+
+void deleteAt(Node* head, int index) {
+    Node* temp = head;
+    while (index--) temp = temp->link;
+
+    Node* del = temp->link;
+    temp->link = del->link;
+    free(del);
+}
+
+void printList(Node* head) {
+    Node* p = head;
+    do {
+        printf("%d ", p->value);
+        p = p->link;
+    } while (p != head);
+    printf("\n");
+}
+
+int main() {
+    Node* head = newNode(5);
+
+    insertAt(head, 0, 10);
+    insertAt(head, 1, 15);
+    insertAt(head, 2, 20);
+
+    printf("Circular List: ");
+    printList(head);
+
+    deleteAt(head, 2);
+
+    printf("After Deletion: ");
+    printList(head);
+
+    return 0;
+}
