@@ -11,8 +11,8 @@ The algorithm mainly uses a stack to temporarily store operators while building 
 -If the symbol is an operator (ex: +, -):
 -Removes operators from the stack and add them to the output as long as they have higher or equal precedence.
 -The current operator is then pushed onto the stack.
--If the token is a left parenthesis ( --> push it onto the stack.
--If the token is a right parenthesis ) --> operators are popped from the stack to the output until a left parenthesis ( is found -->Remove and discard the left parenthesis.
+-If the symbol is a left parenthesis ( --> push it onto the stack.
+-If the symnol is a right parenthesis ) --> operators are popped from the stack to the output until a left parenthesis ( is found -->Remove and discard the left parenthesis.
 -After the entire expression is read, pop all remaining operators from the stack to the output.
 
 
