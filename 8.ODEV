@@ -1,0 +1,36 @@
+#include <stdio.h>
+
+int visited[6] = {0};
+
+int graph[6][6] = {
+    {0,1,0,0,0,0},
+    {1,0,1,0,0,0},
+    {0,1,0,0,0,0},
+    {0,0,0,0,1,1},
+    {0,0,0,1,0,0},
+    {0,0,0,1,0,0}
+};
+
+void dfs(int v, int n) {
+    visited[v] = 1;
+    printf("%d ", v);
+
+    for (int i = 0; i < n; i++) {
+        if (graph[v][i] && !visited[i])
+            dfs(i, n);
+    }
+}
+
+int main() {
+    int nodes = 6;
+
+    printf("Clusters:\n");
+    for (int i = 0; i < nodes; i++) {
+        if (!visited[i]) {
+            printf("Cluster: ");
+            dfs(i, nodes);
+            printf("\n");
+        }
+    }
+    return 0;
+}
