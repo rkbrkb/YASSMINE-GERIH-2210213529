@@ -1,0 +1,53 @@
+1. What is the Shunting Yard Algorithm?
+
+The Shunting Yard Algorithm is an algorithm used to convert mathematical expressions from infix notation (for example: a + b) into postfix notation.
+It was introduced by Edsger Dijkstra to correctly handle operator precedence and parentheses in expressions.
+The algorithm mainly uses a stack to temporarily store operators while building the postfix expression.
+
+2. How does the algorithm work? 
+
+-Reads the expression from left to right.
+-If the current symbol is an operand (a letter or number), add it directly to the output.
+-If the symbol is an operator (ex: +, -):
+-Removes operators from the stack and add them to the output as long as they have higher or equal precedence.
+-The current operator is then pushed onto the stack.
+-If the token is a left parenthesis ( --> push it onto the stack.
+-If the token is a right parenthesis ) --> operators are popped from the stack to the output until a left parenthesis ( is found -->Remove and discard the left parenthesis.
+-After the entire expression is read, pop all remaining operators from the stack to the output.
+
+
+3. Example 1: a+b*c
+
+Read a -> operand -> output: a
+Read + -> operator -> push + onto the stack
+Read b -> operand -> output: ab
+Read * -> operator
+* has higher precedence than +, so push * onto the stack
+Read c -> operand -> output: abc
+End of expression -> pop remaining operators from the stack
+Pop * -> output: abc*
+Pop + -> output: abc*+
+
+Final Postfix Expression: abc*+
+
+
+
+4. Example 2: (a-b)/d
+
+Read ( -> push onto stack
+Read a -> operand -> output: a
+Read - -> operator -> push - onto stack
+Read b -> operand -> output: ab
+Read ) -> pop until (
+pop - -> output: ab-
+discard (
+Read / -> operator -> push / onto stack
+Read d -> operand -> output: ab-d
+End of expression -> pop remaining operator /
+
+Final Postfix Expression: ab-d/
+
+5.
+Infix Expression | Postfix Expression
+a+b*c            | abc*+
+(a-b)/d          | ab-d/
