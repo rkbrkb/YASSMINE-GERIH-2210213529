@@ -1,19 +1,11 @@
-
 #include <stdio.h>
 
-/*
-Sparse Matrix Dönüşümü
-*/
-
-#define ROW 4
-#define COL 4
-
-void makeSparse(int m[ROW][COL]) {
-    int s[ROW * COL + 1][3];
+void makeSparse(int m[4][4]) {
+    int s[16][3];
     int n = 1;
 
-    for (int i = 0; i < ROW; i++) {
-        for (int j = 0; j < COL; j++) {
+    for (int i = 0; i < 4; i++) {
+        for (int j = 0; j < 4; j++) {
             if (m[i][j] != 0) {
                 s[n][0] = i;
                 s[n][1] = j;
@@ -23,8 +15,8 @@ void makeSparse(int m[ROW][COL]) {
         }
     }
 
-    s[0][0] = ROW;
-    s[0][1] = COL;
+    s[0][0] = 4;
+    s[0][1] = 4;
     s[0][2] = n - 1;
 
     printf("R   C   V\n");
@@ -34,14 +26,16 @@ void makeSparse(int m[ROW][COL]) {
 }
 
 int main() {
-    int matrix[ROW][COL] = {
-        {0, 0, 3, 0},
-        {0, 0, 0, 0},
-        {0, 5, 0, 0},
-        {0, 0, 0, 0}
+   
+    int data[4][4] = {
+        {2, 0, 1, 0},
+        {0, 2, 0, 1},
+        {0, 0, 3, 5},
+        {2, 0, 0, 9}
     };
 
-    makeSparse(matrix);
+    makeSparse(data);
     return 0;
 }
+
 
